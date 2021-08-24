@@ -1,4 +1,4 @@
-package com.finago.interview.task.BatchProcessor;
+package com.finago.interview.task;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

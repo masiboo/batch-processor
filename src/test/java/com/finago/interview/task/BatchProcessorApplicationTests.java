@@ -1,4 +1,4 @@
-package com.finago.interview.task.BatchProcessor;
+package com.finago.interview.task;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
