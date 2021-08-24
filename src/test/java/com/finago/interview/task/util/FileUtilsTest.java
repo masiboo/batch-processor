@@ -1,5 +1,7 @@
 package com.finago.interview.task.util;
 
+import com.finago.interview.task.FileUtils;
+import com.finago.interview.task.properties.AppProperties;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,15 +18,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FileUtilsTest {
 
-    private static final String DATA_PATH = "/data/";
-    private static final String RESOURCES_DATA_PATH = "/src/test/resources/data";
+    private static final String DATA_TEST_PATH = "/data/unitTest/data";
+    private static final String RESOURCES_DATA_PATH = "/src/test/resources/data/";
     private static final String XML_FILE_NAME = "90072701.xml";
 
+    private static AppProperties appProperties;
 
     @BeforeAll
     static void beforeAll() throws IOException {
+        appProperties = new AppProperties();
+        appProperties.setDataIn(DATA_TEST_PATH+"/in/");
+        appProperties.setDataOut(DATA_TEST_PATH+"/out/");
+        appProperties.setDataArchive(DATA_TEST_PATH+"/archive/");
+        appProperties.setDataError(DATA_TEST_PATH+"/error/");
+        FileUtils.setAppProperties(appProperties);
         Path sourceDataPath = Path.of(new File(".").getCanonicalPath() + RESOURCES_DATA_PATH);
-        Path destinationDataPath = Path.of(FileUtils.getFileAbsolutePath(DATA_PATH));
+        Path destinationDataPath = Path.of(FileUtils.getFileAbsolutePath(DATA_TEST_PATH));
         if (!Files.exists(destinationDataPath)) {
             Files.walk(sourceDataPath)
                     .forEach(sourcePath -> {
@@ -40,7 +49,7 @@ class FileUtilsTest {
 
     @AfterAll
     static void afterAll() throws IOException {
-        Path destinationDataPath = Path.of(FileUtils.getFileAbsolutePath(DATA_PATH));
+        Path destinationDataPath = Path.of(FileUtils.getFileAbsolutePath(DATA_TEST_PATH));
         try (Stream<Path> walk = Files.walk(destinationDataPath)) {
             walk.sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
@@ -51,14 +60,13 @@ class FileUtilsTest {
 
     @Test
     void testGetFileAbsolutePath() {
-        String actualDataInPath = FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_IN);
-
-        assertTrue(actualDataInPath.contains("/BatchProcessor/data/in"));
+        String actualDataInPath = FileUtils.getFileAbsolutePath(appProperties.getDataIn());
+        assertTrue(actualDataInPath.contains("BatchProcessor"));
     }
 
     @Test
     void testGetChecksum() throws IOException {
-        String expectedCheckSum = "3ec56d15c9366a5045f5de688867f74a";
+        String expectedCheckSum = "c99ddf555859424b8ad6a51bed8f383c";
         String path =  FileUtils.getFileAbsolutePath(RESOURCES_DATA_PATH+"/in/") +
                         XML_FILE_NAME;
         File file = new File(path);
@@ -68,9 +76,8 @@ class FileUtilsTest {
 
     @Test
     void isValidFile() throws IOException {
-        String expectedFileMd5 = "3ec56d15c9366a5045f5de688867f74a";
-        String path = new File(".").getCanonicalPath() + FileUtils.getFileAbsolutePath(RESOURCES_DATA_PATH) +
-                        XML_FILE_NAME;
+        String expectedFileMd5 = "c99ddf555859424b8ad6a51bed8f383c";
+        String path = FileUtils.getFileAbsolutePath(RESOURCES_DATA_PATH+"/in/") + XML_FILE_NAME;
         File file = new File(path);
 
         assertTrue(FileUtils.isValidFile(file, expectedFileMd5));
@@ -78,11 +85,11 @@ class FileUtilsTest {
 
     @Test
     void readXml() throws IOException {
-        Path xmlPath = Path.of(FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_IN), XML_FILE_NAME);
-        Path expectedArchiveXmlPath = Path.of(FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_ARCHIVE), XML_FILE_NAME);
-        Path archiveDirectoryPath = Path.of(FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_ARCHIVE));
-        Path outDirectoryPath = Path.of(FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_OUT));
-        Path inDirectoryPath = Path.of(FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_IN));
+        Path xmlPath = Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataIn()), XML_FILE_NAME);
+        Path expectedArchiveXmlPath = Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataArchive()), XML_FILE_NAME);
+        Path archiveDirectoryPath = Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataArchive()));
+        Path outDirectoryPath = Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataOut()));
+        Path inDirectoryPath = Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataIn()));
         var archiveDirectory = Files.list(archiveDirectoryPath);
         var outDirectory = Files.list(outDirectoryPath);
         var inDirectory = Files.list(inDirectoryPath);

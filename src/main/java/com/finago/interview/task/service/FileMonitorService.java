@@ -1,8 +1,10 @@
 package com.finago.interview.task.service;
 
-import com.finago.interview.task.util.FileUtils;
+import com.finago.interview.task.FileUtils;
+import com.finago.interview.task.properties.AppProperties;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +18,15 @@ import java.nio.file.*;
 @AllArgsConstructor
 public class FileMonitorService {
 
+    @Autowired
+    private AppProperties appProperties;
+
     private final WatchService watchService;
 
     @PostConstruct
     @Async
     public void startMonitoring() {
+        FileUtils.setAppProperties(appProperties);
         FileUtils.readFilesForDirectory();
         log.info("START_MONITORING");
         try {
@@ -32,7 +38,7 @@ public class FileMonitorService {
                       event.kind() == StandardWatchEventKinds.ENTRY_MODIFY) &&
                       event.context().toString().contains(".xml")){
                        try {
-                           FileUtils.readXml(Path.of(FileUtils.getFileAbsolutePath(FileUtils.DATA_PATH_IN),
+                           FileUtils.readXml(Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataIn()),
                                    event.context().toString()));
                        }catch (Exception e){
                            log.error("startMonitoring Exception: "+e.getMessage());

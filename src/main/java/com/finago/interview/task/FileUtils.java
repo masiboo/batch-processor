@@ -1,8 +1,11 @@
-package com.finago.interview.task.util;
+package com.finago.interview.task;
 
 import com.finago.interview.task.model.Receiver;
 import com.finago.interview.task.model.ReceiverHolder;
+import com.finago.interview.task.properties.AppProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,10 +30,16 @@ public class FileUtils {
     public static final int MASK_SET = 0xff;
     public static final int MASK_INCLUDE = 0x100;
     public static final int RADIX = 16;
-    public static String DATA_PATH_IN = "/data/in/";
-    public static String DATA_PATH_OUT = "/data/out/";
-    public static String DATA_PATH_ERROR = "/data/error/";
-    public static String DATA_PATH_ARCHIVE = "/data/archive/";
+
+    private static AppProperties appProperties;
+
+    public static AppProperties getAppProperties() {
+        return appProperties;
+    }
+
+    public static void setAppProperties(AppProperties appProperties) {
+        FileUtils.appProperties = appProperties;
+    }
 
     private static MessageDigest getMessageDigest() {
         MessageDigest digest = null;
@@ -87,10 +96,10 @@ public class FileUtils {
     private static void deletePdfFiles(List<Receiver> receivers){
         receivers.forEach(receiver -> {
             try {
-                Path path = Paths.get(Path.of(getFileAbsolutePath(DATA_PATH_IN), receiver.getFile()).toString());
+                Path path = Paths.get(Path.of(getFileAbsolutePath(appProperties.getDataIn()), receiver.getFile()).toString());
                 if(Files.exists(path) && Files.isRegularFile(path)){
                     Files.deleteIfExists(path);
-                    log.info("File: {}; deleted if exist from {}",receiver.getFile(), getFileAbsolutePath(DATA_PATH_IN));
+                    log.info("File: {}; deleted if exist from {}",receiver.getFile(), getFileAbsolutePath(appProperties.getDataIn()));
                 }
             } catch (IOException e) {
                 log.warn("deletePdfFiles File doesn't exist: "+receiver.getFile());
@@ -147,14 +156,14 @@ public class FileUtils {
     }
 
     private static void processReceiver(Receiver receiver, Path xmlPath) {
-        File file = new File(getFileAbsolutePath(DATA_PATH_IN)+receiver.getFile());
+        File file = new File(getFileAbsolutePath(appProperties.getDataIn())+receiver.getFile());
         if(isValidFile(file, receiver.getFile_md5())){
-            Path subDirPath = createSubDirectory(DATA_PATH_OUT, receiver.getReceiver_id());
-            moveFile(Path.of(getFileAbsolutePath(DATA_PATH_IN), receiver.getFile()), subDirPath);
+            Path subDirPath = createSubDirectory(appProperties.getDataOut(), receiver.getReceiver_id());
+            moveFile(Path.of(getFileAbsolutePath(appProperties.getDataIn()), receiver.getFile()), subDirPath);
             copyXmlFile(xmlPath, subDirPath);
         }else{
-            Path subDirPath = createSubDirectory(DATA_PATH_ERROR, receiver.getReceiver_id());
-            moveFile(Path.of(getFileAbsolutePath(DATA_PATH_IN), receiver.getFile()), subDirPath);
+            Path subDirPath = createSubDirectory(appProperties.getDataError(), receiver.getReceiver_id());
+            moveFile(Path.of(getFileAbsolutePath(appProperties.getDataIn()), receiver.getFile()), subDirPath);
             copyXmlFile(xmlPath, subDirPath);
         }
     }
@@ -204,7 +213,7 @@ public class FileUtils {
     }
 
     public static void readFilesForDirectory()  {
-        try (Stream<Path> paths = Files.walk(Paths.get(getFileAbsolutePath(DATA_PATH_IN)))) {
+        try (Stream<Path> paths = Files.walk(Paths.get(getFileAbsolutePath(appProperties.getDataIn())))) {
             paths.filter(Files::isRegularFile)
                     .forEach( item -> {
                         if(item.getFileName().toString().contains(".xml")){
@@ -239,11 +248,11 @@ public class FileUtils {
             receiverHolder.getReceiver().forEach(item -> {
                 processReceiver(item, xmlPath);
             });
-            moveFile(xmlPath, Path.of(getFileAbsolutePath(DATA_PATH_ARCHIVE)));
+            moveFile(xmlPath, Path.of(getFileAbsolutePath(appProperties.getDataArchive())));
             deletePdfFiles(receiverHolder.getReceiver());
         } catch (JAXBException e) {
             log.error("readXml JAXBException: "+e);
-            moveFile(xmlPath, Paths.get(getFileAbsolutePath(DATA_PATH_ERROR)));
+            moveFile(xmlPath, Paths.get(getFileAbsolutePath(appProperties.getDataError())));
         }
     }
 }
