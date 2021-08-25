@@ -218,6 +218,11 @@ public class FileUtils {
                     });
         }catch (Exception e){
             log.error("readFilesForDirectory exception: "+e.getMessage());
+            String[] split = e.getMessage().split(": ");
+            if(!split[1].isEmpty()){
+                moveFile(Path.of(split[1]), Paths.get(getFileAbsolutePath(appProperties.getDataError())));
+            }
+
         }
     }
 
