@@ -33,10 +33,6 @@ public class FileUtils {
 
     private static AppProperties appProperties;
 
-    public static AppProperties getAppProperties() {
-        return appProperties;
-    }
-
     public static void setAppProperties(AppProperties appProperties) {
         FileUtils.appProperties = appProperties;
     }

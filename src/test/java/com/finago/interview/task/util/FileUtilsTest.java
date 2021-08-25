@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class FileUtilsTest {
 
-    private static final String DATA_TEST_PATH = "/data/unitTest/data";
+    private static final String DATA_TEST_PATH = "/src/test/data/";
     private static final String RESOURCES_DATA_PATH = "/src/test/resources/data/";
     private static final String XML_FILE_NAME = "90072701.xml";
 
@@ -53,7 +53,6 @@ class FileUtilsTest {
         try (Stream<Path> walk = Files.walk(destinationDataPath)) {
             walk.sorted(Comparator.reverseOrder())
                     .map(Path::toFile)
-                    .peek(System.out::println)
                     .forEach(File::delete);
         }
     }
@@ -75,11 +74,10 @@ class FileUtilsTest {
     }
 
     @Test
-    void isValidFile() throws IOException {
+    void isValidFile() {
         String expectedFileMd5 = "c99ddf555859424b8ad6a51bed8f383c";
         String path = FileUtils.getFileAbsolutePath(RESOURCES_DATA_PATH+"/in/") + XML_FILE_NAME;
         File file = new File(path);
-
         assertTrue(FileUtils.isValidFile(file, expectedFileMd5));
     }
 
