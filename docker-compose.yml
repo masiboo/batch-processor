@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  batch-processor:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - $PWD/data:/app/data:rw
