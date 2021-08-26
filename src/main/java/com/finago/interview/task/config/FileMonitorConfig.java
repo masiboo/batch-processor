@@ -1,7 +1,7 @@
 package com.finago.interview.task.config;
 
-import com.finago.interview.task.FileUtils;
 import com.finago.interview.task.properties.AppProperties;
+import com.finago.interview.task.utils.FileUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +21,13 @@ public class FileMonitorConfig {
     public WatchService watchService() {
         WatchService watchService = null;
         try {
+            Path path = Paths.get(FileUtils.getFileAbsolutePath(appProperties.getDataIn()));
+            System.out.println("File to monitor: "+path.toString());
+            //log.info("File to monitor: "+path.toString());
             log.info("MONITORING_DIR: {}", FileUtils.getFileAbsolutePath(appProperties.getDataIn()));
             watchService = FileSystems.getDefault().newWatchService();
-            Path path = Paths.get(FileUtils.getFileAbsolutePath(appProperties.getDataIn()));
+          // Path path = Paths.get(FileUtils.getFileAbsolutePath(appProperties.getDataIn()));
+
 
             if (!Files.isDirectory(path)) {
                 throw new RuntimeException("incorrect monitoring folder: " + path);

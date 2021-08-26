@@ -1,7 +1,7 @@
 package com.finago.interview.task.service;
 
-import com.finago.interview.task.FileUtils;
 import com.finago.interview.task.properties.AppProperties;
+import com.finago.interview.task.utils.FileUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
