@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc39eb1-0233-4854-b2b8-68a9d2c1b8c4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/BatchProcessorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/BatchProcessorApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/AsyncConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/AsyncConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/AsyncExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/AsyncExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/FileMonitorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/FileMonitorConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/model/Receiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/model/Receiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/model/ReceiverHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/model/ReceiverHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/properties/AppProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/properties/AppProperties.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/finago/interview/task/controller/FileControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/finago/interview/task/controller/FileControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/finago/interview/task/util/FileUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/finago/interview/task/util/FileUtilsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +51,7 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="copyright.profiles" />
   </component>
   <component name="RunManager" selected="Application.BatchProcessorApplication">
     <configuration name="BatchProcessorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
