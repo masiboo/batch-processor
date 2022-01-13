@@ -14,7 +14,10 @@ package com.finago.interview.task.utils;
 import com.finago.interview.task.model.Receiver;
 import com.finago.interview.task.model.ReceiverHolder;
 import com.finago.interview.task.properties.AppProperties;
+import com.finago.interview.task.service.FileEventNotificationService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.client.RestTemplate;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -23,6 +26,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,10 +45,16 @@ public class FileUtils {
     public static final int MASK_INCLUDE = 0x100;
     public static final int RADIX = 16;
 
+    private static FileEventNotificationService fileEventNotificationService;
+
     private static AppProperties appProperties;
 
     public static void setAppProperties(AppProperties appProperties) {
         FileUtils.appProperties = appProperties;
+    }
+
+    public static void setFileEventNotificationService(FileEventNotificationService fileEventNotificationService) {
+        FileUtils.fileEventNotificationService = fileEventNotificationService;
     }
 
     private static MessageDigest getMessageDigest() {
@@ -80,6 +91,8 @@ public class FileUtils {
             if(Files.exists(sourcePath)){
                 Files.move( sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
                 log.info("MOVE File: {}; moved to: {}",sourcePath.getFileName(), destinationPath);
+                fileEventNotificationService.setEventNotification(String.format("MOVE File: %s; moved to: %s",sourcePath.getFileName(), destinationPath));
+                fileEventNotificationService.doNotify();
             }
         } catch (IOException e) {
             log.info("moveFile IOException: "+e);

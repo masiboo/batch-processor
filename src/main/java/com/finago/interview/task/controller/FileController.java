@@ -11,29 +11,55 @@
  */
 package com.finago.interview.task.controller;
 
+import com.finago.interview.task.service.FileEventNotificationService;
 import com.finago.interview.task.service.FileMonitorService;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.io.IOException;
+
+@AllArgsConstructor
 @RestController
 @RequestMapping("/xml")
 public class FileController {
 
-    @Autowired
-    FileMonitorService fileMonitorService;
+    private final FileMonitorService fileMonitorService;
+
+    private final FileEventNotificationService fileEventNotificationService;
+
 
     @SneakyThrows
-    @GetMapping("/restart")
-    public String restartFileMonitoring(){
-        fileMonitorService.startMonitoring();
-        return "File monitoring restarted started successfully";
-    }
+        @GetMapping("/restart")
+        public String restartFileMonitoring(){
+            fileMonitorService.startMonitoring();
+            return "File monitoring restarted started successfully";
+        }
 
     @GetMapping("/stop")
-    public void stopFileMonitoring(){
+    public String stopFileMonitoring(){
        fileMonitorService.stopMonitoring();
+       return "File monitoring stop successfully";
+    }
+
+    @GetMapping("/notification")
+    public ResponseEntity<SseEmitter> doNotify() throws InterruptedException, IOException {
+        final SseEmitter emitter = new SseEmitter();
+        fileEventNotificationService.addEmitter(emitter);
+        fileEventNotificationService.doNotify();
+        emitter.onCompletion(() -> fileEventNotificationService.removeEmitter(emitter));
+        emitter.onTimeout(() -> fileEventNotificationService.removeEmitter(emitter));
+        return new ResponseEntity<>(emitter, HttpStatus.OK);
+    }
+
+    @GetMapping("/log/{msg}")
+    public String getMonitoringLogs(@PathVariable("msg")String msg){
+        return msg;
     }
 }
