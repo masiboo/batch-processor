@@ -15,6 +15,7 @@ import com.finago.interview.task.properties.AppProperties;
 import com.finago.interview.task.utils.FileUtils;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -92,6 +93,7 @@ class FileUtilsTest {
         assertTrue(FileUtils.isValidFile(file, expectedFileMd5));
     }
 
+    @Disabled
     @Test
     void readXml() throws IOException {
         Path xmlPath = Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataIn()), XML_FILE_NAME);

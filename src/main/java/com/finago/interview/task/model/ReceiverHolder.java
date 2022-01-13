@@ -17,7 +17,7 @@ import java.util.List;
 
 @XmlRootElement(name = "receivers")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ReceiverHolder {
+public class  ReceiverHolder {
 
     @XmlElement(name = "receiver")
     private List<Receiver> receiver = new ArrayList<>();

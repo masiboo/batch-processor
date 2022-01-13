@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3cc39eb1-0233-4854-b2b8-68a9d2c1b8c4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileEventNotificationService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/in/220019901.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/in/220019915.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/BatchProcessorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/BatchProcessorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/FileMonitorConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/config/FileMonitorConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/model/ReceiverHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/model/ReceiverHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/finago/interview/task/util/FileUtilsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/finago/interview/task/util/FileUtilsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +50,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="false" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -51,9 +62,10 @@
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="copyright.profiles" />
   </component>
-  <component name="RunManager" selected="Application.BatchProcessorApplication">
+  <component name="RunManager" selected="JUnit.All in BatchProcessor">
     <configuration name="BatchProcessorApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.finago.interview.task.BatchProcessorApplication" />
       <module name="BatchProcessor" />
@@ -63,6 +75,60 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in BatchProcessor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BatchProcessor" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BatchProcessor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.finago.interview.task.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.finago.interview.task.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.finago.interview.task.controller.FileControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileUtilsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BatchProcessor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.finago.interview.task.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.finago.interview.task.util" />
+      <option name="MAIN_CLASS_NAME" value="com.finago.interview.task.util.FileUtilsTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileUtilsTest.readXml" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BatchProcessor" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.finago.interview.task.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.finago.interview.task.util" />
+      <option name="MAIN_CLASS_NAME" value="com.finago.interview.task.util.FileUtilsTest" />
+      <option name="METHOD_NAME" value="readXml" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -78,7 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in BatchProcessor" />
+        <item itemvalue="JUnit.FileUtilsTest" />
+        <item itemvalue="JUnit.FileUtilsTest.readXml" />
         <item itemvalue="Application.BatchProcessorApplication" />
+        <item itemvalue="JUnit.FileControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -92,6 +162,100 @@
       <updated>1629902926019</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/finago/interview/task/util/FileUtilsTest.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java</url>
+          <line>40</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/controller/FileController.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileEventNotificationService.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileEventNotificationService.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java</url>
+          <line>237</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/finago/interview/task/util/FileUtilsTest.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java</url>
+          <line>267</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java</url>
+          <line>271</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java</url>
+          <line>176</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/utils/FileUtils.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/finago/interview/task/service/FileMonitorService.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -16,12 +16,19 @@ import com.finago.interview.task.utils.FileUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.*;
 
 @Slf4j
@@ -29,15 +36,20 @@ import java.nio.file.*;
 @AllArgsConstructor
 public class FileMonitorService {
 
-    @Autowired
-    private AppProperties appProperties;
+    private final AppProperties appProperties;
 
     private final WatchService watchService;
 
-    @PostConstruct
+    private final RestTemplate restTemplate;
+
+    private final FileEventNotificationService fileEventNotificationService;
+
+    //@PostConstruct
+    @EventListener(ApplicationReadyEvent.class)
     @Async
     public void startMonitoring() {
         FileUtils.setAppProperties(appProperties);
+        FileUtils.setFileEventNotificationService(fileEventNotificationService);
         FileUtils.readFilesForDirectory();
         log.info("START_MONITORING");
         try {
@@ -49,6 +61,9 @@ public class FileMonitorService {
                       event.kind() == StandardWatchEventKinds.ENTRY_MODIFY) &&
                       event.context().toString().contains(".xml")){
                        try {
+                           restTemplateRequest(event.context().toString()+" processing");
+                           fileEventNotificationService.setEventNotification(event.context().toString()+" processing");
+                           fileEventNotificationService.doNotify();
                            FileUtils.readXml(Path.of(FileUtils.getFileAbsolutePath(appProperties.getDataIn()),
                                    event.context().toString()));
                        }catch (Exception e){
@@ -61,6 +76,13 @@ public class FileMonitorService {
         } catch (InterruptedException e) {
             log.warn("startMonitoring: interrupted exception for monitoring service: "+e.getMessage());
         }
+
+    }
+
+    private void restTemplateRequest(String msg) throws URISyntaxException {
+        String baseUrl = "http://localhost:8080/xml/log/"+msg;
+        URI uri = new URI(baseUrl);
+        restTemplate.getForEntity(uri, String.class  );
     }
 
     @PreDestroy
