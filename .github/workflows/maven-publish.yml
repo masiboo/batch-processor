@@ -40,6 +40,15 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
+    - name: Log into Github Container Regsitry
+      run: echo "${{ secrets.GITHUB_TOKEN}}" | docker login https://ghcr.io -u ${{github.actor}} --password-stdin
+
+    - name: Push images to Github Container Registry
+      run: |
+        IMAGE_ID*ghcr.io/${{github.repository_owner}}/IMAGE_NAME:${{github.run_id}}
+        docker push $IMAGE_ID
+
+
     - name: Publish to GitHub Packages Apache Maven
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
       env:
